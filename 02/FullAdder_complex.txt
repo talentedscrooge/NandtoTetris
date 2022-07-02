@@ -1,0 +1,27 @@
+  //sum
+    Not(in=a, out=nota);
+    Not(in=b, out=notb);
+    Not(in=c, out=notc);
+
+    And(a=nota, b=notb, out=product11);
+    And(a=product11, b=c, out=product1);
+
+    And(a=nota, b=b, out=product21);
+    And(a=product21, b=notc, out=product2);
+
+    And(a=a, b=notb, out=product31);
+    And(a=product31, b=notc, out=product3);
+
+    And(a=a, b=b, out=product41);
+    And(a=product41, b=c, out=product4);
+    //combine four products
+    Or(a=product1, b=product2, out=product12);
+    Or(a=product3, b=product4, out=product34);
+    Or(a=product12, b=product34, out=sum);
+
+    //carry
+    And(a=b, b=c, out=bc);
+    And(a=a, b=b, out=ab);
+    And(a=a, b=c, out=ac);
+    Or(a=bc, b=ab, out=bcAndab);
+    Or(a=bcAndab, b=ac, out=carry);
